@@ -1,0 +1,18 @@
+node_modules/
+dist/
+dev-dist/
+.vite/
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.local
+
+# Claude Code のローカル開発設定（個人環境用）
+.claude/
+
+# OS 固有のメタデータ
+.AppleDouble
+.LSOverride
+ehthumbs.db
