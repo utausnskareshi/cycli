@@ -1,0 +1,115 @@
+/**
+ * Cycli 基本スタイル（リセット + ベース）
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* iOSのオーバースクロール抑制 */
+  overscroll-behavior-y: contain;
+  /* Why: body 全体に safe-area の padding を入れると position:fixed 要素と
+     ずれるため、各コンポーネントで個別に env(safe-area-inset-*) を適用する */
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* モバイルでは数字入力のスピナーは邪魔なので非表示
+   Why: Android Chromeでデフォルト表示される上下ボタンが
+   小さくタップしにくく、誤動作の原因になる */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* iOS Safari でフォーカス時の自動拡大を抑止
+   16px 未満だと自動でズームインしてしまう */
+input,
+textarea,
+select {
+  font-size: max(16px, var(--font-size-md));
+}
+
+/* iOS の momentum scrolling
+   Why: 古い iOS Safari でも滑らかにスクロールさせる */
+.app-main,
+.modal,
+.passcode-screen {
+  -webkit-overflow-scrolling: touch;
+}
+
+a {
+  color: var(--color-accent-strong);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* スクロールバー（細め・優しい色） */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+/* iOSのタップ時ハイライト無効 */
+* {
+  -webkit-touch-callout: none;
+}

@@ -1,0 +1,867 @@
+/**
+ * Cycli アプリ本体スタイル
+ * - モバイル前提のレイアウト
+ * - 上部ヘッダー、メインコンテンツ、下部タブナビ、FAB
+ */
+body.app {
+  background: var(--color-bg);
+  /* iOS Safari でアドレスバー表示時のずれを抑える dvh も併記 */
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior: contain;
+}
+
+#app-root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* スプラッシュ */
+.splash {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  background: var(--color-bg);
+  z-index: var(--z-modal);
+  animation: fadeOut var(--duration-slow) var(--ease-out) forwards;
+  animation-delay: 600ms;
+}
+
+.splash.hidden {
+  display: none;
+}
+
+.splash-logo svg {
+  animation: spin 2.4s linear infinite;
+}
+
+.splash-text {
+  color: var(--color-text-sub);
+  font-size: var(--font-size-sm);
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============== レイアウト ============== */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(180deg, #f8bbd0 0%, #f5a8c4 100%);
+  color: #fff;
+  /* iOSノッチを避けるためトップを safe-area-inset-top で確保 */
+  padding: calc(env(safe-area-inset-top) + var(--space-3)) var(--space-4)
+    var(--space-3);
+  padding-left: calc(env(safe-area-inset-left) + var(--space-4));
+  padding-right: calc(env(safe-area-inset-right) + var(--space-4));
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.app-header h1 {
+  font-size: var(--font-size-lg);
+  letter-spacing: 0.05em;
+}
+
+/* 汎用アイコンボタン（モーダル等で使う） */
+.icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-header .icon-btn {
+  /* Android Material Design 推奨タップターゲット 48dp 以上 */
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  font-size: 22px;
+}
+
+.app-main {
+  flex: 1;
+  padding: var(--space-4);
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  padding-left: calc(var(--space-4) + env(safe-area-inset-left));
+  padding-right: calc(var(--space-4) + env(safe-area-inset-right));
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============== ボトムナビ ============== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-bottomnav);
+  /* ダーク/ライトで自動切替 */
+  background: var(--color-surface);
+  /* iOS Safari (< 16) 対応のため -webkit- 併記 */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-bottom: env(safe-area-inset-bottom);
+  /* iOS横向き時のホームインジケーター回避 */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.bottom-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--space-2) 0;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  min-height: 56px;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.bottom-nav button.active {
+  color: var(--color-accent-strong);
+}
+
+.bottom-nav .nav-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* ============== カード ============== */
+.app-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-4);
+}
+
+.app-card h2 {
+  font-size: var(--font-size-md);
+  color: var(--color-accent-strong);
+  margin-bottom: var(--space-3);
+}
+
+/* ============== FAB（フローティング記録ボタン） ============== */
+.fab {
+  position: fixed;
+  right: var(--space-5);
+  bottom: calc(76px + env(safe-area-inset-bottom) + var(--space-4));
+  z-index: var(--z-fab);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f8bbd0 0%, #ce93d8 100%);
+  color: #fff;
+  font-size: 28px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============== ボタン ============== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  min-height: var(--tap-min);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f8bbd0 0%, #ce93d8 100%);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-accent-strong);
+  border: 1px solid var(--color-border);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ============== 数値表示 ============== */
+.big-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-accent-strong);
+  line-height: 1;
+}
+
+.big-number .unit {
+  font-size: var(--font-size-md);
+  color: var(--color-text-sub);
+  margin-left: var(--space-1);
+}
+
+/* ============== カレンダー ============== */
+.calendar {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.calendar-header button {
+  /* Android推奨48dp */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--color-accent-strong);
+  font-size: 22px;
+}
+
+.calendar-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.calendar-weekdays,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-weekdays div {
+  text-align: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-sub);
+  padding: var(--space-2) 0;
+}
+
+.calendar-weekdays div:first-child {
+  color: var(--color-period);
+}
+.calendar-weekdays div:last-child {
+  color: var(--color-info);
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  position: relative;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: transparent;
+  min-width: 0;
+}
+
+.calendar-day:disabled,
+.calendar-day.out {
+  color: var(--color-text-muted);
+  opacity: 0.4;
+}
+
+.calendar-day.today {
+  outline: 2px solid var(--color-accent-strong);
+  font-weight: 700;
+}
+
+.calendar-day .phase-bar {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.calendar-day .phase-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.calendar-day.phase-period {
+  background: var(--color-period-soft);
+  color: var(--color-period);
+  font-weight: 600;
+}
+
+.calendar-day.phase-period-predicted {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-period-soft),
+    var(--color-period-soft) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  color: var(--color-period);
+}
+
+.calendar-day.phase-ovulation {
+  background: var(--color-ovulation-soft);
+  color: var(--color-ovulation);
+  font-weight: 600;
+}
+
+.calendar-day.phase-fertile {
+  background: var(--color-fertile-soft);
+}
+
+.calendar-day.phase-pms {
+  background: var(--color-pms-soft);
+}
+
+.calendar-day.has-record::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent-strong);
+  border-radius: 50%;
+}
+
+/* 凡例 */
+.calendar-legend {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-sub);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-soft);
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* ============== セグメント ============== */
+.segment {
+  display: flex;
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  gap: 4px;
+}
+
+.segment button {
+  flex: 1;
+  padding: var(--space-2);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-sub);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.segment button.active {
+  background: #fff;
+  color: var(--color-accent-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============== チップ（症状/気分タグ） ============== */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+}
+
+.chip.selected {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+  color: var(--color-accent-strong);
+  font-weight: 600;
+}
+
+/* ============== 入力 ============== */
+.input,
+.textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: var(--font-size-md);
+  min-height: var(--tap-min);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: 2px solid var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.field label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-sub);
+}
+
+/* ============== スライダー（レベル選択） ============== */
+.level-picker {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2);
+}
+
+.level-picker button {
+  padding: var(--space-3) 0;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+  color: var(--color-text-sub);
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+}
+
+.level-picker button.selected {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary-strong);
+}
+
+/* ============== 統計画面 ============== */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.stat-tile {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.stat-tile .label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-sub);
+}
+
+.stat-tile .value {
+  font-size: var(--font-size-2xl);
+  color: var(--color-accent-strong);
+  font-weight: 700;
+}
+
+.stat-tile .unit {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
+  margin-left: 4px;
+}
+
+/* ============== モーダル ============== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 74, 74, 0.4);
+  display: flex;
+  align-items: flex-end;
+  z-index: var(--z-modal);
+  animation: fadeIn var(--duration-base) var(--ease-out);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  border-radius: 24px 24px 0 0;
+  padding: var(--space-6);
+  padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp var(--duration-slow) var(--ease-out);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+  margin: 0 auto var(--space-4);
+}
+
+.modal h2 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+}
+
+/* ============== トースト ============== */
+.toast {
+  position: fixed;
+  bottom: calc(76px + env(safe-area-inset-bottom) + var(--space-6));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-text);
+  color: #fff;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  z-index: var(--z-toast);
+  box-shadow: var(--shadow-md);
+  animation: fadeIn var(--duration-base) var(--ease-out);
+}
+
+/* ============== パスコード画面 ============== */
+.passcode-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #f8bbd0 0%, #ce93d8 100%);
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  color: #fff;
+  /* iOSノッチ/ホームインジケーター回避 */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  overflow-y: auto;
+}
+
+.passcode-title {
+  font-size: var(--font-size-xl);
+}
+
+.passcode-dots {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.passcode-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: transparent;
+}
+
+.passcode-dot.filled {
+  background: #fff;
+}
+
+.passcode-keys {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  gap: var(--space-3);
+}
+
+.passcode-keys button {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.passcode-keys button:active {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.passcode-hint {
+  font-size: var(--font-size-sm);
+  opacity: 0.85;
+}
+
+/* ============== 空状態 ============== */
+.empty-state {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--color-text-sub);
+}
+
+.empty-state .emoji {
+  font-size: 48px;
+  margin-bottom: var(--space-3);
+}
+
+/* ============== レポート ==============
+ * 印刷時に正しく見えるよう、ダークモードでも白背景＋黒文字に固定
+ */
+.report-page {
+  background: #ffffff;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid #f3dfe6;
+  color: #333333;
+}
+
+.report-header {
+  border-bottom: 2px solid #f8bbd0;
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.report-header h1 {
+  font-size: 22px;
+  margin: 0 0 var(--space-2);
+  color: #b072bd;
+}
+
+.report-page .muted,
+.report-page .sub {
+  color: #666666 !important;
+}
+
+.report-section {
+  margin-bottom: var(--space-6);
+  break-inside: avoid;
+}
+
+.report-section h2 {
+  font-size: 18px;
+  color: #333333;
+  border-left: 4px solid #f8bbd0;
+  padding-left: 10px;
+  margin-bottom: var(--space-3);
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #333333;
+  background: #ffffff;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid #dddddd;
+  padding: 8px 10px;
+  text-align: left;
+  color: #333333;
+  background: #ffffff;
+}
+
+.report-table th {
+  background: #fdf3f6;
+  font-weight: 600;
+  width: 40%;
+}
+
+.report-table thead th {
+  background: #fde4ee;
+  width: auto;
+}
+
+.report-memo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.report-memo-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f5e6ec;
+  color: #333333;
+}
+
+.report-footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-3);
+  border-top: 1px solid #f5e6ec;
+  text-align: center;
+}
+
+/* 印刷時 */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #report-page,
+  #report-page * {
+    visibility: visible;
+  }
+  #report-page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 16px;
+  }
+  .no-print,
+  .app-header,
+  .bottom-nav,
+  .fab {
+    display: none !important;
+  }
+}
+
+/* ============== ダミー（カモフラージュ）モード ============== */
+.dummy-app {
+  position: fixed;
+  inset: 0;
+  background: #f5f5f5;
+  z-index: var(--z-modal);
+  padding-top: calc(env(safe-area-inset-top) + var(--space-6));
+  padding-bottom: calc(env(safe-area-inset-bottom) + var(--space-6));
+  padding-left: calc(env(safe-area-inset-left) + var(--space-6));
+  padding-right: calc(env(safe-area-inset-right) + var(--space-6));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.dummy-app .dummy-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* ユーティリティ */
+.text-center {
+  text-align: center;
+}
+.muted {
+  color: var(--color-text-sub);
+}
+.sub {
+  font-size: var(--font-size-sm);
+}
+.mt-2 {
+  margin-top: var(--space-2);
+}
+.mt-4 {
+  margin-top: var(--space-4);
+}
+.mt-6 {
+  margin-top: var(--space-6);
+}
+.flex {
+  display: flex;
+}
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gap-2 {
+  gap: var(--space-2);
+}
+.gap-4 {
+  gap: var(--space-4);
+}

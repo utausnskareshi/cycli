@@ -1,0 +1,24 @@
+{
+  "name": "cycli",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Cycli - 生理周期管理PWA（オフライン対応）",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && node scripts/gen-icons.mjs && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "gen-icons": "node scripts/gen-icons.mjs"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.7",
+    "dexie": "^4.0.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vite-plugin-pwa": "^0.21.1",
+    "workbox-window": "^7.3.0"
+  }
+}

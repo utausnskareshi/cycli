@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#F8BBD0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Cycli" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
+    <title>Cycli - 生理周期管理アプリ</title>
+    <meta
+      name="description"
+      content="Cycli は、オフラインで動作する女性のための生理周期管理PWA。生理・排卵・PMS・ダイエット効率期を予測し、毎日の体調・基礎体温・体重を記録できます。"
+    />
+    <link rel="stylesheet" href="./src/styles/tokens.css" />
+    <link rel="stylesheet" href="./src/styles/base.css" />
+    <link rel="stylesheet" href="./src/styles/landing.css" />
+  </head>
+  <body class="landing">
+    <header class="landing-hero">
+      <div class="hero-logo" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="64" height="64">
+          <circle cx="32" cy="32" r="22" fill="none" stroke="#fff" stroke-width="3"
+            stroke-dasharray="6 4" />
+          <circle cx="32" cy="32" r="6" fill="#fff" />
+        </svg>
+      </div>
+      <h1 class="hero-title">Cycli</h1>
+      <p class="hero-subtitle">あなたのリズムに、やさしく寄りそう。</p>
+      <a class="hero-cta" href="./app.html">アプリをはじめる →</a>
+      <p class="hero-note">※インストール不要・データはこの端末にだけ保存されます</p>
+    </header>
+
+    <main class="landing-main">
+      <!-- 概要 -->
+      <section class="card">
+        <h2 class="card-title">Cycli とは？</h2>
+        <p>
+          Cycli（サイクリ）は、生理周期を管理するためのプログレッシブ・ウェブ・アプリ（PWA）です。
+          スマートフォンのホーム画面に追加すれば、ふつうのアプリと同じように、
+          <strong>オフラインでも</strong> 使えます。
+        </p>
+        <p>
+          記録したデータは、暗号化されて<strong>あなたの端末にだけ</strong>保存されます。
+          サーバーには一切送信されません。
+        </p>
+      </section>
+
+      <!-- 機能 -->
+      <section class="card">
+        <h2 class="card-title">できること</h2>
+        <ul class="feature-list">
+          <li>
+            <span class="feature-icon" style="background: var(--color-period-soft); color: var(--color-period)">●</span>
+            <div>
+              <strong>予測・カレンダー</strong>
+              <p>次回の生理予定日、排卵日、PMS警戒期、ダイエット効率期を自動表示。</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon" style="background: var(--color-ovulation-soft); color: var(--color-ovulation)">●</span>
+            <div>
+              <strong>記録・セルフケア</strong>
+              <p>経血量・痛み・基礎体温・体重・症状・気分をワンタップで記録。</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon" style="background: var(--color-pms-soft); color: var(--color-pms)">●</span>
+            <div>
+              <strong>モード切替</strong>
+              <p>月経管理／妊活／妊娠中／ジュニア など、目的に合わせて画面を切り替え。</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon" style="background: var(--color-diet-loss-soft); color: var(--color-diet-loss)">●</span>
+            <div>
+              <strong>ピル服薬管理</strong>
+              <p>毎日の服薬チェック・飲み忘れ防止アラーム。</p>
+            </div>
+          </li>
+          <li>
+            <span class="feature-icon" style="background: var(--color-accent); color: #fff">●</span>
+            <div>
+              <strong>医療機関向けレポート</strong>
+              <p>記録データを産婦人科の先生に提示できる、見やすい形に整えて表示。</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- インストール手順 iPhone -->
+      <section class="card">
+        <h2 class="card-title">📱 iPhone（iOS）でのインストール手順</h2>
+        <ol class="step-list">
+          <li>
+            <strong>Safari</strong> でこのページを開きます。
+            <small>※Chrome や他ブラウザだとインストールできません</small>
+          </li>
+          <li>下部メニューの <strong>共有ボタン</strong>（□↑）をタップ。</li>
+          <li>メニューから <strong>「ホーム画面に追加」</strong> を選びます。</li>
+          <li>「追加」をタップ → ホーム画面に「Cycli」アイコンが出ます。</li>
+          <li>ホーム画面のアイコンをタップして起動してください。</li>
+        </ol>
+      </section>
+
+      <!-- インストール手順 Android -->
+      <section class="card">
+        <h2 class="card-title">🤖 Android でのインストール手順</h2>
+        <ol class="step-list">
+          <li><strong>Chrome</strong> でこのページを開きます。</li>
+          <li>画面下に <strong>「Cycliをホームに追加」</strong> の案内が出たらタップ。</li>
+          <li>
+            出ない場合は、右上の <strong>⋮ メニュー</strong> →
+            <strong>「アプリをインストール」</strong> または「ホーム画面に追加」を選びます。
+          </li>
+          <li>確認画面で「インストール」をタップ。</li>
+          <li>ホーム画面のアイコンから起動してください。</li>
+        </ol>
+      </section>
+
+      <!-- 注意事項 -->
+      <section class="card card-note">
+        <h2 class="card-title">⚠️ ご利用前にお読みください</h2>
+        <ul>
+          <li>本アプリは<strong>医療機器ではありません</strong>。診断や治療の判断に使わないでください。</li>
+          <li>データはこの端末のブラウザ内（IndexedDB）に暗号化して保存されます。</li>
+          <li>
+            ブラウザのデータを消去したり、端末を変更すると<strong>記録が失われます</strong>。
+            設定からエクスポート（バックアップ）してください。
+          </li>
+          <li>iOS では、ホーム画面に追加した後にのみ通知が機能します。</li>
+        </ul>
+      </section>
+
+      <div class="cta-area">
+        <a class="hero-cta" href="./app.html">アプリを起動する</a>
+        <button id="install-btn" class="hero-cta" style="display:none; margin-left:8px; background: var(--color-accent); color:#fff;">
+          📥 ホーム画面に追加
+        </button>
+      </div>
+    </main>
+
+    <script>
+      // Android Chrome のインストールプロンプトを補足
+      // Why: 「ホーム画面に追加」のメニュー操作を知らないユーザー向けに、
+      //      ワンタップでインストールできるボタンを表示する。
+      let deferredPrompt = null;
+      const installBtn = document.getElementById("install-btn");
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (installBtn) installBtn.style.display = "inline-block";
+      });
+
+      if (installBtn) {
+        installBtn.addEventListener("click", async () => {
+          if (!deferredPrompt) return;
+          deferredPrompt.prompt();
+          const choice = await deferredPrompt.userChoice;
+          if (choice.outcome === "accepted") {
+            installBtn.style.display = "none";
+          }
+          deferredPrompt = null;
+        });
+      }
+
+      window.addEventListener("appinstalled", () => {
+        if (installBtn) installBtn.style.display = "none";
+      });
+
+      // すでにインストール済み（display-mode: standalone）なら CTA を切替
+      if (window.matchMedia("(display-mode: standalone)").matches) {
+        const note = document.querySelector(".hero-note");
+        if (note) note.textContent = "✅ アプリとしてインストール済みです";
+      }
+    </script>
+
+    <footer class="landing-footer">
+      <p>Cycli &copy; 2026 — オフライン動作 PWA</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+/**
+ * Cycli デザイントークン
+ * - 女性向けの優しい配色（さくらピンク + ラベンダー）
+ * - 周期フェーズごとに専用カラー
+ * - ダークモードはP7で追加予定
+ */
+:root {
+  /* ベースカラー */
+  --color-primary: #f8bbd0;
+  --color-primary-strong: #ec9bbe;
+  --color-primary-soft: #fde4ee;
+  --color-accent: #ce93d8;
+  --color-accent-strong: #b072bd;
+
+  /* 周期フェーズ */
+  --color-period: #e57373; /* 生理 */
+  --color-period-soft: #fbe0e0;
+  --color-ovulation: #81c784; /* 排卵 */
+  --color-ovulation-soft: #e1f1e2;
+  --color-fertile: #aed581; /* 受孕期 */
+  --color-fertile-soft: #ecf4dd;
+  --color-pms: #ffb74d; /* PMS警戒期 */
+  --color-pms-soft: #ffeed4;
+  --color-diet-loss: #64b5f6; /* 痩せ期（卵胞期） */
+  --color-diet-loss-soft: #d9ecfb;
+  --color-diet-gain: #ba68c8; /* 溜め込み期（黄体期） */
+  --color-diet-gain-soft: #ecdcf0;
+
+  /* テキスト */
+  --color-text: #4a4a4a;
+  --color-text-sub: #8a8a8a;
+  --color-text-muted: #b5b5b5;
+  --color-text-on-primary: #ffffff;
+
+  /* 背景 */
+  --color-bg: #fff8f9;
+  --color-surface: #ffffff;
+  --color-surface-soft: #fdf3f6;
+  --color-border: #f3dfe6;
+  --color-divider: #f5e6ec;
+
+  /* ステータス */
+  --color-success: #66bb6a;
+  --color-warning: #ffa726;
+  --color-danger: #ef5350;
+  --color-info: #42a5f5;
+
+  /* シャドウ */
+  --shadow-sm: 0 1px 2px rgba(232, 153, 191, 0.12);
+  --shadow-md: 0 4px 16px rgba(232, 153, 191, 0.18);
+  --shadow-lg: 0 12px 40px rgba(232, 153, 191, 0.25);
+
+  /* 角丸 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* タイポ */
+  --font-family-base:
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+    "Yu Gothic", "Meiryo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 22px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 36px;
+
+  /* 間隔 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* タップサイズ（最低48px） */
+  --tap-min: 48px;
+
+  /* アニメーション */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+
+  /* z-index */
+  --z-fab: 50;
+  --z-bottomnav: 60;
+  --z-modal: 100;
+  --z-toast: 200;
+}
+
+/**
+ * ダークモード（data-theme="dark" で適用）
+ * - 背景・サーフェス・テキストを反転
+ * - フェーズカラーは彩度を下げて目に優しく
+ */
+:root[data-theme="dark"] {
+  --color-primary: #d18db1;
+  --color-primary-strong: #e7a5c5;
+  --color-primary-soft: #3d2a35;
+  --color-accent: #b39ddb;
+  --color-accent-strong: #d2bff0;
+
+  --color-period: #ef9a9a;
+  --color-period-soft: #3e2627;
+  --color-ovulation: #a5d6a7;
+  --color-ovulation-soft: #1e2c20;
+  --color-fertile: #c5e1a5;
+  --color-fertile-soft: #232e1a;
+  --color-pms: #ffcc80;
+  --color-pms-soft: #3a2d18;
+  --color-diet-loss: #90caf9;
+  --color-diet-loss-soft: #1a2734;
+  --color-diet-gain: #ce93d8;
+  --color-diet-gain-soft: #2e1f32;
+
+  --color-text: #e8e3e6;
+  --color-text-sub: #b8b1b6;
+  --color-text-muted: #7a7378;
+  --color-text-on-primary: #1a1418;
+
+  --color-bg: #1a1418;
+  --color-surface: #241c22;
+  --color-surface-soft: #2d242b;
+  --color-border: #3a2e36;
+  --color-divider: #322832;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
